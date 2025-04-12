@@ -22,9 +22,23 @@ func Loginhandeler(c *gin.Context) {
 
 func Alluserhandeler(c *gin.Context) {
 	users, errors := cmd.GetAllusers()
-	if len(errors) == 0 {
+	if errors == nil {
 		c.JSON(http.StatusOK, gin.H{"usersData": users})
 	} else {
 		c.JSON(http.StatusNotFound, gin.H{"msg": "Users not found!", "errors": errors})
 	}
 }
+
+func CreateListing(c *gin.Context){
+	c.JSON(http.StatusOK, gin.H{"list": "User has created Listing!"})
+}
+
+func Alllistinghandeler(c *gin.Context) {
+	listings, errors := cmd.GetAllListings()
+	if errors == nil {
+		c.JSON(http.StatusOK, gin.H{"listingData": listings})
+	} else {
+		c.JSON(http.StatusNotFound, gin.H{"msg": "Listings not found!", "errors": errors})
+	}
+}
+
